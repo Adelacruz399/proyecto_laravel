@@ -1,0 +1,2 @@
+[30-Nov-2024 01:11:52 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/medilaserperu/public_html/sistema/preventis/vendor/composer/platform_check.php on line 28
+[30-Nov-2024 02:18:39 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /home/medilaserperu/public_html/sistema/preventis/vendor/composer/platform_check.php on line 28

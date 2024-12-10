@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://medilaserperu.com.pe/sistema/soap-service"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             name="UserService"
+             targetNamespace="http://medilaserperu.com.pe/sistema/soap-service">
+
+    <!-- Mensajes -->
+    <message name="getUserByDniRequest">
+        <part name="dni" type="xsd:string"/>
+    </message>
+    <message name="getUserByDniResponse">
+        <part name="user" element="tns:User"/>
+    </message>
+    <message name="deleteUserByDniRequest">
+        <part name="dni" type="xsd:string"/>
+    </message>
+    <message name="deleteUserByDniResponse">
+        <part name="result" type="xsd:string"/>
+    </message>
+
+    <!-- Tipos (Definición de Usuario) -->
+    <types>
+        <schema targetNamespace="http://medilaserperu.com.pe/sistema/soap-service">
+            <element name="User">
+                <complexType>
+                    <sequence>
+                        <element name="name" type="xsd:string"/>
+                        <element name="email" type="xsd:string"/>
+                        <element name="apellidos" type="xsd:string"/>
+                        <element name="telefono" type="xsd:string"/>
+                        <element name="diagnostico" type="xsd:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </types>
+
+    <!-- Operaciones -->
+    <portType name="UserServicePortType">
+        <operation name="getUserByDni">
+            <input message="tns:getUserByDniRequest"/>
+            <output message="tns:getUserByDniResponse"/>
+        </operation>
+        <operation name="deleteUserByDni">
+            <input message="tns:deleteUserByDniRequest"/>
+            <output message="tns:deleteUserByDniResponse"/>
+        </operation>
+    </portType>
+
+    <!-- Enlace (Binding) -->
+    <binding name="UserServiceBinding" type="tns:UserServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getUserByDni">
+            <soap:operation soapAction="http://medilaserperu.com.pe/sistema/soap-service#getUserByDni"/>
+            <input>
+                <soap:body use="literal" namespace="http://medilaserperu.com.pe/sistema/soap-service"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://medilaserperu.com.pe/sistema/soap-service"/>
+            </output>
+        </operation>
+        <operation name="deleteUserByDni">
+            <soap:operation soapAction="http://medilaserperu.com.pe/sistema/soap-service#deleteUserByDni"/>
+            <input>
+                <soap:body use="literal" namespace="http://medilaserperu.com.pe/sistema/soap-service"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://medilaserperu.com.pe/sistema/soap-service"/>
+            </output>
+        </operation>
+    </binding>
+
+    <!-- Servicio -->
+    <service name="UserService">
+        <port name="UserServicePort" binding="tns:UserServiceBinding">
+            <soap:address location="https://medilaserperu.com.pe/sistema/soap-service"/>
+        </port>
+    </service>
+
+</definitions>
